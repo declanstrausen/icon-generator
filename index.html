@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Icon Generator</title>
+</head>
+<body>
+	<h1>Icon Generator</h1>
+
+	<canvas id="canvas" width="128" height="128"></canvas>
+
+	<div>
+		<button onclick="generateIcon()">Generate Icon</button>
+	</div>
+
+	<script>
+		// Get the canvas element and its 2D context
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+
+		// Define a function for generating a random icon
+		function generateIcon() {
+			// Clear the canvas
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			// Generate a random background color
+			var bgColor = getRandomColor();
+			ctx.fillStyle = bgColor;
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+			// Generate a random foreground color
+			var fgColor = getRandomColor();
+
+			// Generate a random shape (circle or square)
+			var shape = Math.floor(Math.random() * 2);
+			ctx.fillStyle = fgColor;
+			if (shape == 0) {
+				// Draw a circle
+				ctx.beginPath();
+				ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 4, 0, Math.PI * 2);
+				ctx.fill();
+			} else {
+				// Draw a square
+				ctx.fillRect(canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2);
+			}
+		}
+
+		// Define a function for generating a random color
+		function getRandomColor() {
+			var r = Math.floor(Math.random() * 256);
+			var g = Math.floor(Math.random() * 256);
+			var b = Math.floor(Math.random() * 256);
+			return "rgb(" + r + "," + g + "," + b + ")";
+		}
+	</script>
+</body>
+</html>
